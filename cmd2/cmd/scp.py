@@ -16,16 +16,15 @@ put = True
 def parse_args():
     global name,ip,remote,host_str,put,local,file_name
     if len(sys.argv) == 3:
-	    if '@' in sys.argv[1]:
-	        put = False
-	        host_str = sys.argv[1]
-	        local = sys.argv[2]
-	    elif '@' in sys.argv[2]:
-	        host_str= sys.argv[2]
-	        local = sys.argv[1]
+        if '@' in sys.argv[1]:
+            put = False
+            host_str = sys.argv[1]
+            local = sys.argv[2]
+        elif '@' in sys.argv[2]:
+            host_str= sys.argv[2]
+            local = sys.argv[1]
     else:
-	    print('''The input format error
-	    Please input:  scp localpath remotepath''')
+        print('''The input format error Please input:  scp localpath remotepath''')
         
     name = host_str[0:host_str.index('@')]
     ip = host_str[host_str.index('@') + 1:host_str.index(':')]
@@ -54,9 +53,9 @@ def exe_cmd():
     print(name,ip,remote,file_name)
     pwd = getpass.getpass('{0}@{1}`s password:'.format(name,ip))
     try:
-	    scp=paramiko.Transport((ip,22))
-	    scp.connect(username=name,password=pwd)
-	    sftp=paramiko.SFTPClient.from_transport(scp)
+        scp=paramiko.Transport((ip,22))
+        scp.connect(username=name,password=pwd)
+        sftp=paramiko.SFTPClient.from_transport(scp)
     except:
         pass
     if put:
@@ -73,4 +72,3 @@ if __name__ == '__main__':
     parse_args()
     exe_cmd()
     #print(name,ip,path,pwd)
-    
