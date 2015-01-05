@@ -43,17 +43,7 @@ def parse_args():
             file_name = local
     else:
         file_name = os.path.split(remote)[1]
-    
-  
-def progres(b,size):
-    '''进度条'''
-    j='#'
-    for i in range(1,size+1):
-        j += '#'
-        sys.stdout.write(str(int((i/b)*100))+'%['+j+']'+"\r" )
-        sys.stdout.flush()
-        time.sleep(0.5)
-    
+
 def exe_cmd():
     '''利用paramiko实现scp功能'''
     global pwd,remote,local,file_name,ssh,sftp
